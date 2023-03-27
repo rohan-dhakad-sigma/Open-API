@@ -1,13 +1,7 @@
 {
-    "securityDefinitions": {
-        "api_key": {
-            "type": "apiKey",
-            "name": "api_key",
-            "in": "header"
-        }
-    },
     "swagger": "2.0",
     "info": {
+        "version": "2.4 ",
         "title": "Go Rest"
     },
     "host": "gorest.co.in",
@@ -18,7 +12,7 @@
     "tags": [
         {
             "name": "Todo",
-            "description": "Get method for getting list of todo "
+            "description": "Interface for get method of getting list of todo "
         }
     ],
     "paths": {
@@ -28,14 +22,12 @@
                     "Todo"
                 ],
                 "description": "Get method for getting list of todo",
-                "operationId": "GetTodo",
+                "operationId": "GetV2Todos",
                 "consumes": [
-                    "application/json",
-                    "application/xml"
+                    "application/json"
                 ],
                 "produces": [
-                    "application/json",
-                    "application/xml"
+                    "application/json"
                 ],
                 "responses": {
                     "200": {
@@ -147,9 +139,7 @@
                 },
                 "required": [
                     "id",
-                    "status",
-                    "title",
-                    "user_id"
+                    "title"
                 ]
             }
         }
