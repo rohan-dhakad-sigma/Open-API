@@ -10,8 +10,8 @@
     "info": {
         "title": "Go Rest"
     },
-    "host": "https://gorest.co.in/",
-    "basePath": "/rest/all",
+    "host": "gorest.co.in",
+    "basePath": "/public/v2",
     "schemes": [
         "https"
     ],
@@ -22,7 +22,7 @@
         }
     ],
     "paths": {
-        "/public/v2/todos": {
+        "/todos": {
             "get": {
                 "tags": [
                     "Todo"
@@ -146,7 +146,6 @@
                     }
                 },
                 "required": [
-                    "due_on",
                     "id",
                     "status",
                     "title",
