@@ -1,0 +1,158 @@
+{
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
+    "swagger": "2.0",
+    "info": {
+        "title": "Go Rest"
+    },
+    "host": "https://gorest.co.in/",
+    "basePath": "/rest/all",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+            "name": "Todo",
+            "description": "Get method for getting list of todo "
+        }
+    ],
+    "paths": {
+        "/public/v2/todos": {
+            "get": {
+                "tags": [
+                    "Todo"
+                ],
+                "description": "Get method for getting list of todo",
+                "operationId": "GetTodo",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/todo-list-information-interface"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "error-response": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Error message"
+                    },
+                    "errors": {
+                        "$ref": "#/definitions/error-errors"
+                    },
+                    "code": {
+                        "type": "integer",
+                        "description": "Error code"
+                    },
+                    "parameters": {
+                        "$ref": "#/definitions/error-parameters"
+                    },
+                    "trace": {
+                        "type": "string",
+                        "description": "Stack trace"
+                    }
+                },
+                "required": [
+                    "message"
+                ]
+            },
+            "error-errors": {
+                "type": "array",
+                "description": "Errors list",
+                "items": {
+                    "$ref": "#/definitions/error-errors-item"
+                }
+            },
+            "error-errors-item": {
+                "type": "object",
+                "description": "Error details",
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "description": "Error message"
+                    },
+                    "parameters": {
+                        "$ref": "#/definitions/error-parameters"
+                    }
+                }
+            },
+            "error-parameters": {
+                "type": "array",
+                "description": "Error parameters list",
+                "items": {
+                    "$ref": "#/definitions/error-parameters-item"
+                }
+            },
+            "error-parameters-item": {
+                "type": "object",
+                "description": "Error parameters item",
+                "properties": {
+                    "resources": {
+                        "type": "string",
+                        "description": "ACL resource"
+                    },
+                    "fieldName": {
+                        "type": "string",
+                        "description": "Missing or invalid field name"
+                    },
+                    "fieldValue": {
+                        "type": "string",
+                        "description": "Incorrect field value"
+                    }
+                }
+            },
+            "todo-list-information-interface": {
+                "type": "object",
+                "description": "Todo List Information interface.",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "user_id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "due_on": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "due_on",
+                    "id",
+                    "status",
+                    "title",
+                    "user_id"
+                ]
+            }
+        }
+    }
+}
