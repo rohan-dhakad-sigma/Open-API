@@ -62,38 +62,6 @@
             }
         },
         "/users": {
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "description": "Get method for getting list of users",
-                "operationId": "GetV2Users",
-                "consumes": [
-                    "application/json",
-                    "application/xml"
-                ],
-                "produces": [
-                    "application/json",
-                    "application/xml"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 Success.",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/customer-data-information-interface"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "schema": {
-                            "$ref": "#/definitions/error-response"
-                        }
-                    }
-                }
-            },
             "post": {
                 "tags": [
                     "CreateCustomerAccount"
