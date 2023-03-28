@@ -131,7 +131,7 @@
             }
         },
         "/posts/256/comments": {
-            "get": {
+            "post": {
                 "tags": [
                     "CreatePosts"
                 ],
