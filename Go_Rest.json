@@ -41,9 +41,31 @@
                 "responses": {
                     "200": {
                         "description": "200 Success.",
-                        "schema": {
-                            "$ref": "#/definitions/todo-list-information-interface"
-                        }
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "user_id": {
+                                "type": "integer"
+                            },
+                            "title": {
+                                "type": "string"
+                            },
+                            "due_on": {
+                                "type": "string"
+                            },
+                            "status": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "user_id",
+                            "title",
+                            "due_on",
+                            "status"
+                        ]
                     },
                     "default": {
                         "description": "Unexpected error",
@@ -125,34 +147,6 @@
                         "description": "Incorrect field value"
                     }
                 }
-            },
-            "todo-list-information-interface": {
-                "type": "object",
-                "description": "Todo List Information interface.",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "user_id": {
-                        "type": "integer"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "due_on": {
-                        "type": "string"
-                    },
-                    "status": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "id",
-                    "user_id",
-                    "title",
-                    "due_on",
-                    "status"
-                ]
             }
         }
     }
