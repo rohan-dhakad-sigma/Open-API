@@ -82,11 +82,23 @@
                         "in": "body",
                         "schema": {
                             "required": [
-                                "custom"
+                                "name",
+                                "gender",
+                                "email",
+                                "status"
                             ],
                             "properties": {
-                                "customer": {
-                                    "$ref": "#/definitions/customer-data-customer-interface"
+                                "name": {
+                                    "type": "string"
+                                },
+                                "gender": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "type": "string"
                                 }
                             },
                             "type": "object",
