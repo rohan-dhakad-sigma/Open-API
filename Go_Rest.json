@@ -1,4 +1,11 @@
 {
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
     "swagger": "2.0",
     "info": {
         "version": "2.4 ",
@@ -24,10 +31,12 @@
                 "description": "Get method for getting list of todo",
                 "operationId": "GetV2Todos",
                 "consumes": [
-                    "application/json"
+                    "application/json",
+                    "application/xml"
                 ],
                 "produces": [
-                    "application/json"
+                    "application/json",
+                    "application/xml"
                 ],
                 "responses": {
                     "200": {
@@ -139,7 +148,10 @@
                 },
                 "required": [
                     "id",
-                    "title"
+                    "user_id",
+                    "title",
+                    "due_on",
+                    "status"
                 ]
             }
         }
