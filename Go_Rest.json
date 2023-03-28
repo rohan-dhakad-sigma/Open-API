@@ -82,7 +82,7 @@
                         "in": "body",
                         "schema": {
                             "required": [
-                                "customer"
+                                "custom"
                             ],
                             "properties": {
                                 "customer": {
