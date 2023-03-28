@@ -219,34 +219,6 @@
                 "status"
             ]
         },
-        "customer-data-information-interface": {
-            "type": "object",
-            "description": "Customer data Information interface.",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "gender": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "email",
-                "gender",
-                "status"
-            ]
-        },
         "customer-data-customer-interface": {
             "type": "object",
             "description": "Customer entity interface for API handling.",
