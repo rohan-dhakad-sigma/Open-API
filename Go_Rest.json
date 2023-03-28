@@ -19,6 +19,10 @@
         {
             "name": "Todo",
             "description": "Interface for get method of getting list of todo "
+        },
+        {
+            "name": "Users",
+            "description": "Interface for get method of getting user data "
         }
     ],
     "paths": {
@@ -53,6 +57,41 @@
                 }
             }
         },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Get method for getting list of users",
+                "operationId": "GetV2Users",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/customer-data-information-interface"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        }
+    },
         "definitions": {
             "error-response": {
                 "type": "object",
@@ -152,7 +191,34 @@
                     "due_on",
                     "status"
                 ]
-            }
+            },
+            "customer-data-information-interface": {
+                "type": "object",
+                "description": "Customer data Information interface.",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "gender",
+                    "status"
+            ]
         }
     }
 }
