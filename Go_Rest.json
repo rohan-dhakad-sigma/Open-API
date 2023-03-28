@@ -23,6 +23,10 @@
         {
             "name": "Users",
             "description": "Interface for get method of getting user data "
+        },
+        {
+            "name": "CreateCustomerAccount",
+            "description": "Interface for managing customers accounts."
         }
     ],
     "paths": {
@@ -89,135 +93,214 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "CreateCustomerAccount"
+                ],
+                "description": "Create customer account.",
+                "operationId": "PostV2Users",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "PostV2UsersBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "customer"
+                            ],
+                            "properties": {
+                                "customer": {
+                                    "$ref": "#/definitions/customer-data-customer-interface"
+                                }
+                            },
+                            "type": "object",
+                            "xml": {
+                                "name": "request"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/customer-data-customer-interface"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
             }
         }
     },
-        "definitions": {
-            "error-response": {
-                "type": "object",
-                "properties": {
-                    "message": {
-                        "type": "string",
-                        "description": "Error message"
-                    },
-                    "errors": {
-                        "$ref": "#/definitions/error-errors"
-                    },
-                    "code": {
-                        "type": "integer",
-                        "description": "Error code"
-                    },
-                    "parameters": {
-                        "$ref": "#/definitions/error-parameters"
-                    },
-                    "trace": {
-                        "type": "string",
-                        "description": "Stack trace"
-                    }
+    "definitions": {
+        "error-response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message"
                 },
-                "required": [
-                    "message"
-                ]
-            },
-            "error-errors": {
-                "type": "array",
-                "description": "Errors list",
-                "items": {
-                    "$ref": "#/definitions/error-errors-item"
-                }
-            },
-            "error-errors-item": {
-                "type": "object",
-                "description": "Error details",
-                "properties": {
-                    "message": {
-                        "type": "string",
-                        "description": "Error message"
-                    },
-                    "parameters": {
-                        "$ref": "#/definitions/error-parameters"
-                    }
-                }
-            },
-            "error-parameters": {
-                "type": "array",
-                "description": "Error parameters list",
-                "items": {
-                    "$ref": "#/definitions/error-parameters-item"
-                }
-            },
-            "error-parameters-item": {
-                "type": "object",
-                "description": "Error parameters item",
-                "properties": {
-                    "resources": {
-                        "type": "string",
-                        "description": "ACL resource"
-                    },
-                    "fieldName": {
-                        "type": "string",
-                        "description": "Missing or invalid field name"
-                    },
-                    "fieldValue": {
-                        "type": "string",
-                        "description": "Incorrect field value"
-                    }
-                }
-            },
-            "todo-list-information-interface": {
-                "type": "object",
-                "description": "Todo List Information interface.",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "user_id": {
-                        "type": "integer"
-                    },
-                    "title": {
-                        "type": "string"
-                    },
-                    "due_on": {
-                        "type": "string"
-                    },
-                    "status": {
-                        "type": "string"
-                    }
+                "errors": {
+                    "$ref": "#/definitions/error-errors"
                 },
-                "required": [
-                    "id",
-                    "user_id",
-                    "title",
-                    "due_on",
-                    "status"
-                ]
-            },
-            "customer-data-information-interface": {
-                "type": "object",
-                "description": "Customer data Information interface.",
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "gender": {
-                        "type": "string"
-                    },
-                    "status": {
-                        "type": "string"
-                    }
+                "code": {
+                    "type": "integer",
+                    "description": "Error code"
                 },
-                "required": [
-                    "id",
-                    "name",
-                    "email",
-                    "gender",
-                    "status"
+                "parameters": {
+                    "$ref": "#/definitions/error-parameters"
+                },
+                "trace": {
+                    "type": "string",
+                    "description": "Stack trace"
+                }
+            },
+            "required": [
+                "message"
+            ]
+        },
+        "error-errors": {
+            "type": "array",
+            "description": "Errors list",
+            "items": {
+                "$ref": "#/definitions/error-errors-item"
+            }
+        },
+        "error-errors-item": {
+            "type": "object",
+            "description": "Error details",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message"
+                },
+                "parameters": {
+                    "$ref": "#/definitions/error-parameters"
+                }
+            }
+        },
+        "error-parameters": {
+            "type": "array",
+            "description": "Error parameters list",
+            "items": {
+                "$ref": "#/definitions/error-parameters-item"
+            }
+        },
+        "error-parameters-item": {
+            "type": "object",
+            "description": "Error parameters item",
+            "properties": {
+                "resources": {
+                    "type": "string",
+                    "description": "ACL resource"
+                },
+                "fieldName": {
+                    "type": "string",
+                    "description": "Missing or invalid field name"
+                },
+                "fieldValue": {
+                    "type": "string",
+                    "description": "Incorrect field value"
+                }
+            }
+        },
+        "todo-list-information-interface": {
+            "type": "object",
+            "description": "Todo List Information interface.",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "due_on": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "user_id",
+                "title",
+                "due_on",
+                "status"
+            ]
+        },
+        "customer-data-information-interface": {
+            "type": "object",
+            "description": "Customer data Information interface.",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "email",
+                "gender",
+                "status"
+            ]
+        },
+        "customer-data-customer-interface": {
+            "type": "object",
+            "description": "Customer entity interface for API handling.",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "gender",
+                "email",
+                "status"
             ]
         }
     }
