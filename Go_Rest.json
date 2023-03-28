@@ -21,8 +21,8 @@
             "description": "Interface for get method of getting list of todo "
         },
         {
-            "name": "Users",
-            "description": "Interface for get method of getting user data "
+            "name": "CreatePosts",
+            "description": "Interface for creating posts."
         },
         {
             "name": "CreateCustomerAccount",
@@ -82,7 +82,7 @@
                         "in": "body",
                         "schema": {
                             "required": [
-                                "customer"
+                                "custom"
                             ],
                             "properties": {
                                 "customer": {
@@ -101,6 +101,71 @@
                         "description": "200 Success.",
                         "schema": {
                             "$ref": "#/definitions/customer-data-customer-interface"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/error-response"
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/256/comments": {
+            "get": {
+                "tags": [
+                    "CreatePosts"
+                ],
+                "description": "Create post using authentication",
+                "operationId": "PostV2CreatePosts",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "PostV2CreatePostsBody",
+                        "in": "body",
+                        "schema": {
+                            "required": [
+                                "name",
+                                "email",
+                                "body"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "body": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object",
+                            "xml": {
+                                "name": "request"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success.",
+                        "schema": {
+                            "$ref": "#/definitions/create-post-data-interface"
                         }
                     },
                     "500": {
@@ -222,6 +287,30 @@
         "customer-data-customer-interface": {
             "type": "object",
             "description": "Customer entity interface for API handling.",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "gender",
+                "email",
+                "status"
+            ]
+        },
+        "create-post-data-interface": {
+            "type": "object",
+            "description": "Create Posts data interface.",
             "properties": {
                 "name": {
                     "type": "string"
