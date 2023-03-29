@@ -324,24 +324,28 @@
             "type": "object",
             "description": "Create Posts data interface.",
             "properties": {
-                "name": {
-                    "type": "string"
+                "id": {
+                    "type": "integer"
                 },
-                "gender": {
+                "post_id": {
+                    "type": "integer"
+                },
+                "name": {
                     "type": "string"
                 },
                 "email": {
                     "type": "string"
                 },
-                "status": {
+                "body": {
                     "type": "string"
                 }
             },
             "required": [
-                "name",
-                "gender",
+                "body",
                 "email",
-                "status"
+                "id",
+                "name",
+                "post_id"
             ]
         }
     }
